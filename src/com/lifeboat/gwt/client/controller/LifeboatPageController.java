@@ -12,6 +12,7 @@ import com.lifeboat.gwt.client.event.LifeboatEvent;
 import com.lifeboat.gwt.client.event.LifeboatEventBus;
 import com.lifeboat.gwt.client.event.TextMessageEvent;
 import com.lifeboat.gwt.client.resources.LifeboatClientBundle;
+import com.lifeboat.gwt.client.widgets.AvailableGamesPanel;
 import com.lifeboat.gwt.client.widgets.EnterNamePanel;
 import com.lifeboat.gwt.client.widgets.TopPanelPlayerStatus;
 import net.zschech.gwt.comet.client.CometListener;
@@ -105,13 +106,13 @@ public class LifeboatPageController {
     }
 
     private void enterPlayerName(final List<AvailableGame> availableGames) {
-        new EnterNamePanel(new EnterNamePanel.EnterNameDialogListener() {
+        frame.setContent(new EnterNamePanel(new EnterNamePanel.EnterNameDialogListener() {
             public void onNameEntered(String name, String hexColor) {
                 gameModel.setPlayer(new PlayerBasicInfo(name, hexColor));
                 frame.setTopPanel(new TopPanelPlayerStatus(LifeboatCharactersClientBundle.INSTANCE.noAvatarSmall(), gameModel.getPlayer()));
                 showAvailableGames(availableGames);
             }
-        }).show();
+        }));
     }
 
     private void restoreCurrentGame(PageInitialState result) {
@@ -121,6 +122,7 @@ public class LifeboatPageController {
     }
 
     private void showAvailableGames(List<AvailableGame> availableGames) {
-
+        final AvailableGamesPanel content = new AvailableGamesPanel(availableGames);
+        frame.setContent(content);
     }
 }

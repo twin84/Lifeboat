@@ -22,27 +22,33 @@ public interface LifeboatConstants extends Constants {
     @Key("dlg.session.expired.text")
     String dlgSessionExpiredText();
 
-    String dlgEnterNameTitle();
+    String enterNameTitle();
 
-    String dlgEnterNameText();
+    String enterNameText();
 
-    String dlgEnterErrColor();
+    String enterErrColor();
 
     String validatorFieldEmpty();
 
     String validatorFieldTooLong();
 
-    String dlgEnterNameColorPrompt();
+    String enterNameColorPrompt();
 
-    String dlgEnterNameFieldName();
+    String enterNameFieldName();
 
-    String dlgEnterNameFieldColor();
+    String enterNameFieldColor();
 
-    String dlgEnterNameSubmit();
+    String enterNameSubmit();
 
     String dlgBtnSelectColor();
 
-    String dlgEnterNameFieldColorHint();
+    String enterNameFieldColorHint();
 
     String lifeboatTitle();
+
+    String avGameNum();
+
+    String avGamePlayerName();
+
+    String avGamePlayersCount();
 }

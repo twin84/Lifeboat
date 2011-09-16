@@ -4,15 +4,18 @@ import com.extjs.gxt.ui.client.event.ButtonEvent;
 import com.extjs.gxt.ui.client.event.SelectionListener;
 import com.extjs.gxt.ui.client.widget.Dialog;
 import com.extjs.gxt.ui.client.widget.button.Button;
-import com.extjs.gxt.ui.client.widget.form.*;
+import com.extjs.gxt.ui.client.widget.form.AdapterField;
 import com.extjs.gxt.ui.client.widget.form.FormPanel;
+import com.extjs.gxt.ui.client.widget.form.TextField;
 import com.google.gwt.dom.client.Style;
 import com.google.gwt.event.dom.client.ClickEvent;
 import com.google.gwt.event.dom.client.ClickHandler;
-import com.google.gwt.user.client.Window;
-import com.google.gwt.user.client.ui.*;
-import com.lifeboat.gwt.client.validators.StringLengthValidator;
+import com.google.gwt.user.client.ui.Grid;
+import com.google.gwt.user.client.ui.HTML;
+import com.google.gwt.user.client.ui.HasHorizontalAlignment;
+import com.google.gwt.user.client.ui.HasVerticalAlignment;
 import com.lifeboat.gwt.client.text.LifeboatConstants;
+import com.lifeboat.gwt.client.validators.StringLengthValidator;
 import net.auroris.ColorPicker.client.ColorPicker;
 
 /**
@@ -21,22 +24,21 @@ import net.auroris.ColorPicker.client.ColorPicker;
  */
 public class EnterNamePanel extends FormPanel {
     private static final String DEFAULT_COLOR = "black";
-    private static final int FORM_WIDTH = 300;
 
     private String color = DEFAULT_COLOR;
     private final Dialog colorPickerDialog = new Dialog();
     private final ColorPicker colorPicker = new ColorPicker();
 
     public EnterNamePanel(final EnterNameDialogListener listener) {
-        setHeading(LifeboatConstants.INSTANCE.dlgEnterNameTitle());
+        setHeading(LifeboatConstants.INSTANCE.enterNameTitle());
         setFrame(true);
-        HTML widget = new HTML(LifeboatConstants.INSTANCE.dlgEnterNameText());
+        HTML widget = new HTML(LifeboatConstants.INSTANCE.enterNameText());
         widget.addStyleName("x-form-item");
         widget.getElement().getStyle().setPaddingBottom(15, Style.Unit.PX);
         add(widget);
 
         final TextField<String> name = new TextField<String>();
-        name.setFieldLabel(LifeboatConstants.INSTANCE.dlgEnterNameFieldName());
+        name.setFieldLabel(LifeboatConstants.INSTANCE.enterNameFieldName());
         name.setValidator(new StringLengthValidator());
         name.setAllowBlank(false);
         name.getFocusSupport().setPreviousId(getButtonBar().getId());
@@ -47,7 +49,7 @@ public class EnterNamePanel extends FormPanel {
         final Grid grid = new Grid(1, 1);
         grid.setCellPadding(0);
         grid.setCellSpacing(0);
-        grid.setWidget(0, 0, new HTML(LifeboatConstants.INSTANCE.dlgEnterNameFieldColorHint()));
+        grid.setWidget(0, 0, new HTML(LifeboatConstants.INSTANCE.enterNameFieldColorHint()));
         grid.getCellFormatter().setAlignment(0, 0, HasHorizontalAlignment.ALIGN_CENTER, HasVerticalAlignment.ALIGN_MIDDLE);
         grid.setHeight("22px");
         final Style style = grid.getElement().getStyle();
@@ -57,7 +59,7 @@ public class EnterNamePanel extends FormPanel {
         style.setBackgroundColor(color);
         style.setCursor(Style.Cursor.POINTER);
         AdapterField adapterField = new AdapterField(grid);
-        adapterField.setFieldLabel(LifeboatConstants.INSTANCE.dlgEnterNameFieldColor());
+        adapterField.setFieldLabel(LifeboatConstants.INSTANCE.enterNameFieldColor());
         add(adapterField);
         grid.addClickHandler(new ClickHandler() {
             public void onClick(ClickEvent event) {
@@ -78,13 +80,7 @@ public class EnterNamePanel extends FormPanel {
         addButton(button);
         setButtonAlign(com.extjs.gxt.ui.client.Style.HorizontalAlignment.RIGHT);
         button.getElement().getStyle().setMarginRight(20, Style.Unit.PX);
-    }
-
-    public void show() {
-        RootPanel.get().add(this);
-        getElement().getStyle().setPosition(Style.Position.ABSOLUTE);
-        getElement().getStyle().setLeft((Window.getClientWidth() - FORM_WIDTH) / 2, Style.Unit.PX);
-        getElement().getStyle().setTop((Window.getClientHeight() - getOffsetHeight()) / 2, Style.Unit.PX);
+        setWidth(350);
     }
 
     private void initColorPickerDialog(final Style style) {
