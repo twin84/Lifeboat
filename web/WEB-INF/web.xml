@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://java.sun.com/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://java.sun.com/xml/ns/javaee
+		  http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+         version="2.5">
+
+    <filter>
+        <filter-name>CheckGameSessionFilter</filter-name>
+        <filter-class>com.lifeboat.gwt.server.CheckGameSessionFilter</filter-class>
+    </filter>
+
+    <servlet>
+        <servlet-name>StartGameService</servlet-name>
+        <servlet-class>com.lifeboat.gwt.server.StartGameServiceImpl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>PlayGameService</servlet-name>
+        <servlet-class>com.lifeboat.gwt.server.PlayGameServiceImpl</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>CometServlet</servlet-name>
+        <servlet-class>net.zschech.gwt.comet.server.CometServlet</servlet-class>
+    </servlet>
+
+    <filter-mapping>
+        <filter-name>CheckGameSessionFilter</filter-name>
+        <servlet-name>PlayGameService</servlet-name>
+    </filter-mapping>
+
+    <servlet-mapping>
+        <servlet-name>StartGameService</servlet-name>
+        <url-pattern>/lifeboat/StartGameService</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>PlayGameService</servlet-name>
+        <url-pattern>/lifeboat/PlayGameService</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CometServlet</servlet-name>
+        <url-pattern>/lifeboat/CometServlet</url-pattern>
+    </servlet-mapping>
+
+</web-app>

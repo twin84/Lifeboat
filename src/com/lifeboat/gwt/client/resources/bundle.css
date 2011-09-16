@@ -1,0 +1,16 @@
+@sprite .header {
+    gwt-image: 'header' ;
+}
+
+.headerColor {
+    color: #fefefe;
+}
+
+.headerTitle {
+    font: 20px tahoma,arial,sans-serif;
+    padding: 10px 0 0 10px
+}
+
+.headerBorder {
+    border: 1px solid #2e4d67;
+}
